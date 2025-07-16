@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"generatedAt": "2025-07-15T01:19:18.684Z",
+		"tasksAnalyzed": 5,
+		"totalTasks": 13,
+		"analysisCount": 10,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "引入 Zustand 進行全域狀態管理",
+			"complexityScore": 7,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down the migration from useState + props-drilling to Zustand into clear steps: dependency installation, store structure design, state identification, migration of state and logic, component refactoring, props chain removal, and regression testing.",
+			"reasoning": "Refactoring from useState and props-drilling to Zustand involves architectural changes, careful state mapping, and thorough regression testing. Best practices include modular store design, selective subscriptions, and middleware usage for debugging and persistence[1][2][3]. Each step (setup, migration, refactor, cleanup, validation) is distinct and non-trivial, warranting granular subtasks."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "整合 TanStack Query 進行數據獲取",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand the integration process into: installing dependencies, setting up QueryClientProvider, designing custom hooks for data fetching, mocking API responses, integrating hooks into UI components, and handling loading/error states.",
+			"reasoning": "Introducing TanStack Query standardizes data fetching and caching, requiring changes at both infrastructure and component levels. Each aspect (provider setup, hook creation, UI integration, error/loading handling) is a discrete implementation step, and best practices suggest modular hooks and comprehensive error management."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "整合真實 Google Distance Matrix API",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Decompose the task into: obtaining and securing API keys, updating environment configuration, refactoring hooks for real API calls, implementing error handling, user feedback integration, client-side caching, and cost management.",
+			"reasoning": "Switching from mock to real APIs introduces security, error handling, and cost considerations. Each step (API key management, secure storage, hook refactor, error/caching logic) is critical and aligns with industry standards for robust API integration."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "使用 TanStack Virtual 優化歷史數據表格",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Divide the optimization into: dependency installation, DataTable refactor, virtualizer hook integration, rendering logic update, CSS adjustments, and performance testing with large datasets.",
+			"reasoning": "Virtualizing large tables requires architectural changes to rendering logic and styling, as well as thorough performance validation. Each step is distinct and necessary for a maintainable, performant solution."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "建立全局錯誤邊界和加載狀態管理",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Expand into: ErrorBoundary component creation, global error logging, Zustand store update for loading state, unified loading spinner implementation, integration into async flows, and comprehensive error/recovery testing.",
+			"reasoning": "Implementing global error and loading state management involves cross-cutting concerns, requiring new components, store updates, and integration across async operations. Each step is a best practice for robust, user-friendly applications."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "後端服務基礎架構搭建 (NestJS + PostgreSQL)",
+			"complexityScore": 9,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down backend setup into: project scaffolding, database configuration, schema design, CRUD API implementation, authentication setup, API documentation, Dockerization, and automated testing.",
+			"reasoning": "Building a production-grade backend from scratch is complex, involving multiple layers (API, DB, auth, deployment). Each area (setup, DB, API, docs, CI/CD) is a substantial subtask, reflecting industry standards for scalable backend systems."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "AI 驅動的智能分析功能",
+			"complexityScore": 9,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Expand into: external AI API integration, recommendation algorithm development, route optimization engine, seasonal data analysis, personalized goal system, AI accuracy validation, and user feedback loop.",
+			"reasoning": "AI-driven features require integration, algorithm development, data analysis, and user feedback mechanisms. Each step is a significant technical challenge, aligning with best practices for AI feature delivery."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "第三方整合與 API 開放平台",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Decompose into: REST/GraphQL endpoint development, calendar API integration, ERP interface design, webhook system implementation, API documentation/SDKs, developer onboarding materials, and security/rate limiting.",
+			"reasoning": "Enterprise-grade integrations and open API platforms require robust endpoint design, third-party integration, documentation, and security. Each area is a best practice-driven subtask for scalable, secure integrations."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "移動應用開發與國際化支援",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Expand into: React Native project setup, core feature adaptation, i18n integration, theme system development, offline/data sync, push/GPS integration, and platform-specific testing/deployment.",
+			"reasoning": "Cross-platform mobile development with advanced features (i18n, offline, notifications) is complex, requiring modular subtasks for each major capability and platform-specific considerations."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "合規與認證支援系統",
+			"complexityScore": 9,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down into: standards research, report generation engine, carbon market API integration, offset calculation engine, third-party audit interface, compliance testing, and certification preparation.",
+			"reasoning": "Compliance and certification systems require deep domain research, complex data/reporting logic, third-party integrations, and rigorous validation. Each area is a substantial subtask, reflecting regulatory and technical best practices."
+		}
+	]
+}

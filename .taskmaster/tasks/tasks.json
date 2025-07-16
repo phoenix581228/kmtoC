@@ -1,0 +1,522 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "引入 Zustand 進行全域狀態管理",
+        "description": "將現有的 useState + props-drilling 模式重構為 Zustand 集中狀態管理",
+        "details": "目前應用程式使用 useState 和 props-drilling 管理狀態，難以擴展和維護。此任務將引入 Zustand，建立一個集中的、模組化的 Store 來管理所有共享狀態，如歷史記錄、圖表數據、用戶輸入等。交付標準是 App.jsx 及相關子組件不再通過 props 傳遞共享狀態，而是直接從 Zustand store 中讀取。",
+        "testStrategy": "1. 安裝 Zustand 依賴 2. 在 src/stores 目錄下建立主 store 檔案 3. 識別 App.jsx 中所有被多層傳遞的狀態 4. 將這些狀態及其更新邏輯遷移到 Zustand store 中 5. 重構組件使其直接使用 useAppStore hook 6. 移除所有冗餘的 props 傳遞鏈 7. 確保現有功能在重構後行為一致",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install Zustand Dependency",
+            "description": "Add Zustand to the project to enable global state management.",
+            "dependencies": [],
+            "details": "Run the appropriate package manager command (e.g., npm install zustand or yarn add zustand) to include Zustand in the project dependencies.\n<info added on 2025-07-15T01:28:58.686Z>\n品質檢查點：\n\n1. 📋 依賴安裝驗證：執行 `npm list zustand` 確認已安裝且版本正確\n2. 🔍 Code Review：檢查 package.json，確認 zustand 已正確加入 dependencies\n3. 🌐 瀏覽器除錯：啟動應用程式，於 DevTools Network 面板確認無相關資源載入錯誤\n4. ✅ 功能測試：啟動應用程式，確認無 console 錯誤且應用可正常運作\n</info added on 2025-07-15T01:28:58.686Z>",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Design Store Structure",
+            "description": "Define the structure and modules of the Zustand store based on current and anticipated state needs.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a new directory (e.g., src/stores) and design the main store file(s), outlining state slices and actions for features like history, chart data, and user input. Consider modularization and middleware for debugging or persistence if needed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Identify Shared State for Migration",
+            "description": "Map out all state variables and logic currently managed by useState and passed via props-drilling.",
+            "dependencies": [
+              2
+            ],
+            "details": "Review App.jsx and all relevant child components to list every piece of state and updater function that is shared across multiple component levels.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Migrate State and Logic to Zustand Store",
+            "description": "Move identified state variables and their update logic from useState into the new Zustand store.",
+            "dependencies": [
+              3
+            ],
+            "details": "Implement the state and actions in the Zustand store, ensuring all business logic and side effects are preserved. Use best practices such as selective subscriptions and middleware where appropriate.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Refactor Components to Use Zustand",
+            "description": "Update components to consume state and actions directly from the Zustand store instead of via props.",
+            "dependencies": [
+              4
+            ],
+            "details": "Replace useState and props usage with the appropriate useStore hook calls in each component. Ensure components subscribe only to the state slices they need.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Remove Props-Drilling Chains",
+            "description": "Eliminate all unnecessary props passing related to shared state throughout the component tree.",
+            "dependencies": [
+              5
+            ],
+            "details": "Clean up component interfaces and remove any props that are no longer needed due to direct Zustand access. Refactor or simplify component hierarchies as appropriate.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Perform Regression Testing",
+            "description": "Verify that all features and state-dependent behaviors work as expected after the migration.",
+            "dependencies": [],
+            "details": "Run existing tests and perform manual testing to ensure the application behaves identically to the pre-migration version. Pay special attention to edge cases and shared state updates.\n<info added on 2025-07-15T01:29:21.696Z>\n品質檢查點（Regression Checklist）：\n\n1. 功能完整性：確認地址輸入、距離計算、歷史記錄等所有原有功能皆可正常運作，無功能遺失或異常。\n2. Code Review：檢查所有組件已移除不必要的 props 傳遞，確保狀態皆由 Zustand store 取得。\n3. 瀏覽器除錯：使用 DevTools Console 確認無錯誤訊息，並透過 React DevTools 驗證組件狀態與 store 同步正確。\n4. 性能檢查：觀察重構後的渲染次數與效能，確保無明顯性能退化。\n5. 用戶流程測試：從地址輸入到結果顯示，完整測試主要用戶流程，確保體驗與重構前一致。\n</info added on 2025-07-15T01:29:21.696Z>",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "整合 TanStack Query 進行數據獲取",
+        "description": "建立標準化的數據獲取層，為 Google Maps API 整合做準備",
+        "details": "為整合真實的 Google Maps API 做準備，並建立一個標準化的數據獲取層。此任務將引入 TanStack Query 來管理 API 請求的生命週期，包括緩存、重試和狀態管理。交付標準是應用中所有異步數據獲取都通過 TanStack Query 處理。",
+        "testStrategy": "1. 安裝 TanStack Query 依賴 2. 在 App.jsx 設置 QueryClientProvider 3. 創建 useDistanceMatrix 自定義 hook 4. 暫時返回模擬數據確保整合結構正確 5. 在 AddressInput 組件中調用此 hook 並處理加載和錯誤狀態",
+        "status": "pending",
+        "dependencies": [
+          1
+        ],
+        "priority": "high",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install TanStack Query Dependencies",
+            "description": "Add TanStack Query (react-query) and related packages to the project to enable standardized data fetching and caching.",
+            "dependencies": [],
+            "details": "Run the appropriate package manager command (e.g., npm install @tanstack/react-query) to install the required dependencies.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set Up QueryClientProvider in App Entry",
+            "description": "Initialize QueryClient and wrap the application with QueryClientProvider to provide query context throughout the component tree.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a QueryClient instance and wrap the root component (e.g., App.jsx) with <QueryClientProvider client={queryClient}> to enable TanStack Query features across the app.[2][3]",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design Custom Data Fetching Hook (useDistanceMatrix)",
+            "description": "Implement a reusable custom hook for fetching distance matrix data, encapsulating query logic and queryKey management.",
+            "dependencies": [
+              2
+            ],
+            "details": "Create a useDistanceMatrix hook using useQuery, define a suitable queryKey, and structure the hook to accept parameters for origin/destination addresses.[2][3]",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Mock API Responses for Development",
+            "description": "Set up mock data and API response logic within the custom hook to simulate real API behavior and validate integration structure.",
+            "dependencies": [
+              3
+            ],
+            "details": "Within useDistanceMatrix, temporarily return hardcoded or mock data instead of making real API calls, ensuring the hook and provider integration work as expected.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integrate Custom Hook into UI Components",
+            "description": "Connect the useDistanceMatrix hook to relevant UI components (e.g., AddressInput) to trigger data fetching based on user input.",
+            "dependencies": [
+              4
+            ],
+            "details": "Invoke the custom hook in the AddressInput component, passing user-provided addresses as parameters, and use the returned data, loading, and error states for rendering.[2]",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Handle Loading and Error States in UI",
+            "description": "Implement UI logic to display loading indicators and error messages based on the hook's state, ensuring a robust user experience.",
+            "dependencies": [
+              5
+            ],
+            "details": "Use the isPending (or isLoading) and error properties from the hook to conditionally render loading spinners or error messages in the AddressInput component.[2]",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "整合真實 Google Distance Matrix API",
+        "description": "將模擬 API 替換為真實的 Google Maps API 調用",
+        "details": "將當前的模擬 API 替換為真實的 Google Distance Matrix API 調用。這需要處理 API Key 的安全存儲、真實的 API 請求與響應，以及全面的錯誤處理。交付標準是應用能根據用戶輸入的真實地址計算出距離，並處理各種 API 錯誤情況。",
+        "testStrategy": "1. 在 Google Cloud Platform 中獲取 Distance Matrix API 金鑰 2. 使用 .env 文件安全管理 API Key 3. 更新 useDistanceMatrix hook 調用真實 Google API 4. 實現詳細的錯誤處理和用戶回饋 5. 考慮 API 成本實現客戶端緩存策略",
+        "status": "done",
+        "dependencies": [
+          2
+        ],
+        "priority": "high",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Obtain Google Distance Matrix API Key",
+            "description": "Register a Google Cloud project and enable the Distance Matrix API to generate a new API key for use in the application.",
+            "dependencies": [],
+            "details": "Follow Google Cloud setup instructions to create a project, enable billing, and activate the Distance Matrix API. Generate an API key with appropriate restrictions for security.[3]",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Securely Store and Manage API Key",
+            "description": "Implement secure storage of the API key using environment variables and restrict its usage to authorized domains.",
+            "dependencies": [
+              1
+            ],
+            "details": "Add the API key to a .env file and ensure it is not committed to version control. Configure API key restrictions in the Google Cloud Console to limit usage to specific referrers or IPs.[3]",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Update Environment Configuration",
+            "description": "Modify the application's environment configuration to load the API key securely at runtime.",
+            "dependencies": [
+              2
+            ],
+            "details": "Update configuration files and scripts to read the API key from environment variables, ensuring it is injected into the build process and accessible where needed.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Refactor useDistanceMatrix Hook for Real API Calls",
+            "description": "Replace mock API logic in the useDistanceMatrix hook with real HTTP requests to the Google Distance Matrix API.",
+            "dependencies": [
+              3
+            ],
+            "details": "Update the hook to construct and send requests to the Distance Matrix API endpoint, handle asynchronous responses, and parse the returned data for use in the app.[1][3]\n<info added on 2025-07-15T01:29:50.713Z>\n新增品質檢查點如下：\n\n1. API 請求驗證：於 Network 面板確認發送至 Distance Matrix API 的請求格式、HTTP method、參數（如 origins、destinations、key 等）皆正確且完整。\n2. 回應數據檢查：比對 API 回應結構，確認包含正確的 status、rows、elements 等欄位，並驗證距離與時間數據有效[1]。\n3. 瀏覽器除錯：於 DevTools Console 記錄 API 呼叫過程，確保無 JavaScript 錯誤或未捕捉例外。\n4. 功能測試：實際輸入多組地址（多 origins/destinations）測試距離計算結果，確認與 Google Maps 預期一致[2][4]。\n5. 邊緣案例：測試無效地址、API key 錯誤、超過配額、網路錯誤等情境，檢查 hook 能正確處理並回報錯誤狀態[1]。\n</info added on 2025-07-15T01:29:50.713Z>",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Robust Error Handling",
+            "description": "Add comprehensive error handling to the API integration, covering network issues, invalid responses, and quota errors.",
+            "dependencies": [
+              4
+            ],
+            "details": "Detect and handle errors from the API, such as invalid API keys, exceeded quotas, or malformed requests. Provide fallback logic and ensure errors are logged for debugging.[1][3]",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Integrate User Feedback Mechanisms",
+            "description": "Provide clear and actionable feedback to users based on API call status, including loading indicators and error messages.",
+            "dependencies": [
+              5
+            ],
+            "details": "Display loading spinners during API requests and show user-friendly error messages when issues occur. Ensure the UI updates appropriately based on the hook's state.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Client-side Caching and Cost Management",
+            "description": "Add caching logic to minimize redundant API calls and monitor usage to control costs.",
+            "dependencies": [],
+            "details": "Use client-side caching (e.g., via TanStack Query) to store recent API responses and avoid unnecessary requests. Track API usage and implement rate limiting or warnings to prevent excessive costs.[2][3]",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "使用 TanStack Virtual 優化歷史數據表格",
+        "description": "解決大數據量渲染效能問題，實現表格虛擬化",
+        "details": "當前 DataTable 在處理大量數據（例如，超過 1000 條）時會出現嚴重的性能問題。此任務將使用 TanStack Virtual 來實現表格的虛擬滾動，確保即使有上萬條記錄，DOM 中也只渲染可見區域的行。交付標準是包含 10,000 條記錄的表格滾動流暢，頁面加載時間符合 PRD 指標（<3s）。",
+        "testStrategy": "1. 安裝 TanStack Virtual 依賴 2. 重構 DataTable 組件 3. 使用 useVirtualizer hook 管理行的虛擬化 4. 修改表格渲染邏輯遍歷 virtualizer.getVirtualItems() 5. 應用正確的 CSS transform 和 position 樣式 6. 測試不同數據量下的滾動性能",
+        "status": "pending",
+        "dependencies": [
+          1
+        ],
+        "priority": "high",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Dependency Installation",
+            "description": "Install the required TanStack Virtual library and any related dependencies to enable table virtualization.",
+            "dependencies": [],
+            "details": "Use your package manager (e.g., npm or yarn) to add TanStack Virtual to the project. Ensure all peer dependencies are resolved.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "DataTable Refactor",
+            "description": "Refactor the existing DataTable component to prepare for virtualization integration.",
+            "dependencies": [
+              1
+            ],
+            "details": "Isolate the table's core rendering logic and ensure the component structure is modular, making it easier to integrate the virtualizer hook.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Virtualizer Hook Integration",
+            "description": "Integrate the useVirtualizer hook from TanStack Virtual into the DataTable component.",
+            "dependencies": [
+              2
+            ],
+            "details": "Set up the useVirtualizer hook to manage the visible row indices and handle scroll events, configuring it for the expected row size and total count.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Rendering Logic Update",
+            "description": "Update the DataTable's rendering logic to only render rows returned by the virtualizer.",
+            "dependencies": [
+              3
+            ],
+            "details": "Replace the standard row mapping with a loop over virtualizer.getVirtualItems(), ensuring only visible rows are rendered and positioned correctly.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "CSS Adjustments",
+            "description": "Apply necessary CSS changes to support virtualized rendering and smooth scrolling.",
+            "dependencies": [
+              4
+            ],
+            "details": "Update styles to use transforms and absolute positioning as required by the virtualizer, ensuring the table layout remains consistent and scrolls smoothly.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Performance Testing with Large Datasets",
+            "description": "Test the virtualized DataTable with large datasets to validate performance improvements.",
+            "dependencies": [
+              5
+            ],
+            "details": "Populate the table with 10,000+ rows and measure scroll smoothness and page load time, ensuring compliance with performance requirements (<3s load time, smooth scrolling).\n<info added on 2025-07-15T01:30:13.032Z>\n新增品質檢查點（性能驗證）：\n\n1. 性能基準測試：以 10,000 筆資料進行測試，頁面載入時間需小於 3 秒\n2. 記憶體使用量：透過 DevTools Performance 檢查，確認無明顯記憶體洩漏\n3. 滾動流暢度：進行 60fps 滾動測試，確保無明顯掉幀或延遲\n4. DOM 節點數量：驗證 DOM 僅渲染可見行數（約 10-20 個），其餘行未進入 DOM\n5. 極限測試：以 50,000 筆以上資料測試，確認表格仍可正常操作與渲染\n</info added on 2025-07-15T01:30:13.032Z>",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "建立全局錯誤邊界和加載狀態管理",
+        "description": "實現全應用程式錯誤處理和統一加載狀態管理",
+        "details": "建立React Error Boundary來捕獲和處理應用程式中的意外錯誤，防止整個應用程式崩潰。同時實現全局加載狀態管理，為所有異步操作提供一致的用戶回饋。交付標準是應用程式在遇到任何錯誤時都有優雅的降級處理，並且所有加載狀態都有統一的視覺表現。",
+        "testStrategy": "1. 創建 ErrorBoundary 組件包裝主應用 2. 實現全局錯誤日誌記錄 3. 在 Zustand store 中添加全局加載狀態 4. 創建統一的 LoadingSpinner 組件 5. 集成到所有異步操作中 6. 測試各種錯誤情況和恢復機制",
+        "status": "pending",
+        "dependencies": [
+          1
+        ],
+        "priority": "high",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create ErrorBoundary Component",
+            "description": "Develop a reusable ErrorBoundary React component that catches JavaScript errors in its child component tree, logs the errors, and displays a user-friendly fallback UI.",
+            "dependencies": [],
+            "details": "Implement ErrorBoundary using React lifecycle methods such as getDerivedStateFromError and componentDidCatch. Ensure the fallback UI is informative and actionable. Allow for customization of fallback messages based on context.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Global Error Logging",
+            "description": "Integrate a global error logging mechanism within the ErrorBoundary component to capture and report errors to a centralized logging service or console.",
+            "dependencies": [
+              1
+            ],
+            "details": "In componentDidCatch, send error details and component stack information to an external monitoring service (e.g., Sentry) or log them for debugging. Ensure sensitive data is not exposed in logs.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Update Zustand Store for Loading State",
+            "description": "Extend the Zustand store to include global loading state management, enabling consistent tracking of loading status across all async operations.",
+            "dependencies": [],
+            "details": "Add loading state variables and actions to the Zustand store. Provide hooks for components and async flows to set and clear loading states. Ensure the store supports multiple concurrent loading operations if needed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop Unified Loading Spinner Component",
+            "description": "Create a centralized LoadingSpinner component that visually represents the global loading state and can be reused throughout the application.",
+            "dependencies": [
+              3
+            ],
+            "details": "Design the spinner to be visually consistent and accessible. Connect it to the Zustand store so it automatically displays or hides based on the global loading state.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integrate ErrorBoundary and Loading Spinner into Async Flows",
+            "description": "Wrap async operations and key UI sections with the ErrorBoundary component and ensure all async flows update the global loading state, triggering the unified spinner.",
+            "dependencies": [
+              1,
+              3,
+              4
+            ],
+            "details": "Refactor async logic to set loading state before and after operations. Place ErrorBoundary components at appropriate locations (feature, layout, or route level) to maximize resilience and user experience.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Comprehensive Error and Recovery Testing",
+            "description": "Test the application for various error scenarios and loading states to ensure graceful degradation, correct error logging, and proper loading feedback.",
+            "dependencies": [
+              2,
+              5
+            ],
+            "details": "Simulate component errors, network failures, and edge cases. Verify that errors are caught, logged, and displayed with the correct fallback UI. Ensure loading spinner appears and disappears as expected. Test recovery flows such as retry and reload.\n<info added on 2025-07-15T01:30:39.456Z>\n品質檢查點新增：\n\n1. 錯誤捕獲測試：手動或透過 React DevTools 觸發 JavaScript 錯誤，驗證 ErrorBoundary 能正確攔截並顯示 fallback UI，避免全頁白屏[1][2][3]。\n2. 錯誤日誌記錄：檢查錯誤資訊（包含錯誤堆疊與組件資訊）是否完整記錄於日誌系統，並可追蹤來源[1][2]。\n3. 用戶體驗：發生錯誤時，確認顯示友善的降級 UI（如錯誤提示、重試按鈕），而非直接崩潰或空白畫面[1][2]。\n4. 加載狀態：針對各種異步操作，驗證 LoadingSpinner 是否於請求期間正確顯示，請求結束後自動隱藏。\n5. 恢復機制：測試錯誤發生後的重試、重新整理等恢復功能，確保用戶可順利回到正常流程。\n</info added on 2025-07-15T01:30:39.456Z>",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "後端服務基礎架構搭建 (NestJS + PostgreSQL)",
+        "description": "從零開始建立企業級後端服務架構",
+        "details": "建立基於 NestJS 的後端服務，集成 PostgreSQL 資料庫、JWT 認證、API 文檔生成等企業級功能。包含資料庫設計、API 架構規劃、Docker 容器化部署等。交付標準是完整的後端 API 服務能正常運行，具備基本的 CRUD 操作和資料庫連接。",
+        "testStrategy": "1. 初始化 NestJS 專案結構 2. 配置 PostgreSQL 資料庫連接 3. 設計資料庫 Schema (用戶、組織、碳排放記錄) 4. 實現基本的 REST API 端點 5. 配置 Swagger API 文檔 6. Docker Compose 部署配置 7. 編寫單元測試和整合測試",
+        "status": "pending",
+        "dependencies": [
+          5
+        ],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "用戶認證系統 (註冊/登入/JWT)",
+        "description": "實現完整的用戶身份驗證和授權系統",
+        "details": "建立用戶註冊、登入、密碼重設等功能，實現 JWT 令牌管理和前後端認證整合。包含密碼加密、令牌刷新機制、角色權限控制等安全功能。交付標準是用戶能夠安全地註冊、登入系統，並且所有 API 都有適當的權限保護。",
+        "testStrategy": "1. 實現用戶註冊 API 和密碼加密 2. 建立登入驗證和 JWT 簽發 3. 前端登入表單和狀態管理 4. 實現令牌自動刷新機制 5. API 路由權限保護中間件 6. 密碼重設和電子郵件驗證 7. 安全性測試和漏洞掃描",
+        "status": "pending",
+        "dependencies": [
+          6
+        ],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "組織與團隊管理系統",
+        "description": "實現多用戶支援和企業級組織架構管理",
+        "details": "建立組織、團隊、部門的層級管理系統，支援多用戶協作和數據共享。包含角色權限控制（個人/企業管理員）、數據隔離機制、企業儀表板等功能。交付標準是企業用戶能夠建立組織、邀請成員、設定權限，並查看團隊碳排放統計。",
+        "testStrategy": "1. 設計組織-用戶多對多關係資料模型 2. 實現組織建立和成員邀請 API 3. 建立 RBAC 權限控制系統 4. 前端組織管理介面開發 5. 數據隔離和安全性驗證 6. 企業儀表板和統計功能 7. 多租戶數據測試",
+        "status": "pending",
+        "dependencies": [
+          7
+        ],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "進階分析與報告系統",
+        "description": "實現企業級數據分析和報告導出功能",
+        "details": "建立自定義日期範圍篩選、交通工具使用統計、碳排放趨勢分析等進階分析功能，並支援 PDF/Excel 報告導出。包含互動式圖表、數據可視化和商業智能儀表板。交付標準是企業用戶能夠生成詳細的碳排放分析報告，支援多種格式導出。",
+        "testStrategy": "1. 實現日期範圍篩選和數據聚合 API 2. 建立交通工具使用統計分析 3. 開發碳排放趨勢分析演算法 4. 整合 Chart.js 或 D3.js 進階圖表 5. 實現 PDF 報告生成 (Puppeteer) 6. Excel 導出功能 (ExcelJS) 7. 效能測試和大數據處理優化",
+        "status": "pending",
+        "dependencies": [
+          8
+        ],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "AI 驅動的智能分析功能",
+        "description": "實現人工智慧輔助的碳減排建議和路線優化",
+        "details": "整合 AI 模型提供智能出行建議、碳減排目標設定與追蹤、環保出行路線推薦、季節性排放模式分析等功能。使用機器學習分析用戶行為模式，提供個人化的減碳建議。交付標準是系統能根據用戶歷史數據提供準確的 AI 分析和建議。",
+        "testStrategy": "1. 整合外部 AI API (OpenAI/Anthropic) 2. 開發碳減排建議演算法 3. 實現路線優化推薦引擎 4. 季節性數據分析和模式識別 5. 個人化目標設定系統 6. AI 建議準確性測試和驗證 7. 用戶回饋機制建立",
+        "status": "pending",
+        "dependencies": [
+          9
+        ],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "第三方整合與 API 開放平台",
+        "description": "建立企業級整合能力和 API 生態系統",
+        "details": "實現第三方日曆整合（自動行程計算）、企業 ERP 系統整合、API 開放平台和 Webhook 通知系統。建立標準化的 API 文檔、SDK 開發和開發者社區。交付標準是第三方系統能透過 API 無縫整合碳排放計算功能。",
+        "testStrategy": "1. 開發 RESTful API 和 GraphQL 端點 2. 整合 Google Calendar/Outlook API 3. 設計企業 ERP 整合接口 4. 實現 Webhook 通知系統 5. 建立 API 文檔和 SDK 6. 開發者入門指南和示例 7. API 限流和安全性測試",
+        "status": "pending",
+        "dependencies": [
+          10
+        ],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "移動應用開發與國際化支援",
+        "description": "開發跨平台移動應用和全球化使用者體驗",
+        "details": "使用 React Native 開發跨平台移動應用，實現離線模式支援、多語言國際化（i18n）、深色/淺色主題切換等進階用戶體驗功能。包含推送通知、GPS 定位、離線數據同步等移動端特有功能。交付標準是完整的移動應用能在 iOS 和 Android 上正常運行。",
+        "testStrategy": "1. 初始化 React Native 專案架構 2. 實現核心功能的移動端適配 3. 整合 react-i18next 多語言支援 4. 開發深色/淺色主題系統 5. 實現離線模式和數據同步 6. 整合推送通知和 GPS 定位 7. iOS/Android 平台測試和上架準備",
+        "status": "pending",
+        "dependencies": [
+          11
+        ],
+        "priority": "low",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "合規與認證支援系統",
+        "description": "實現國際標準合規和碳抵消交易功能",
+        "details": "支援 ISO 14064 標準、GHG Protocol 兼容性、碳抵消計算與交易、第三方審計支援等合規功能。建立符合國際標準的碳盤查報告格式，整合碳交易市場 API，提供完整的企業級合規解決方案。交付標準是系統生成的報告符合國際碳盤查標準，並支援碳抵消交易。",
+        "testStrategy": "1. 研究 ISO 14064 和 GHG Protocol 標準要求 2. 實現標準化碳盤查報告生成 3. 整合碳交易市場 API 4. 開發碳抵消計算引擎 5. 建立第三方審計數據接口 6. 合規性測試和驗證 7. 國際標準認證申請準備",
+        "status": "pending",
+        "dependencies": [
+          12
+        ],
+        "priority": "low",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-15T00:50:32.139Z",
+      "updated": "2025-07-15T03:07:10.924Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

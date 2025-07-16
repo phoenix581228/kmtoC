@@ -1,0 +1,54 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142 76% 36%;
+    --radius: 0.5rem;
+  }
+}
+
+body {
+  @apply bg-gradient-to-br from-slate-900 via-green-900 to-emerald-900 text-white min-h-screen;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.glass-effect {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent;
+}
+
+.chart-container {
+  @apply bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6;
+}
+
+.upload-zone {
+  @apply border-2 border-dashed border-green-400/50 rounded-xl p-8 text-center transition-all duration-300 hover:border-green-400 hover:bg-green-400/5;
+}
+
+.carbon-card {
+  @apply glass-effect rounded-xl p-6 hover:bg-white/15 transition-all duration-300 transform hover:scale-105;
+}
