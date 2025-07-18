@@ -225,9 +225,18 @@ function App() {
             className="mt-16 text-center"
           >
             <div className="glass-effect rounded-xl p-6 border border-white/20">
-              <p className="text-white/70 text-sm">
+              <p className="text-white/70 text-sm mb-3">
                 🌱 讓我們一起為地球環保盡一份心力，減少碳排放，創造更美好的未來！
               </p>
+              <div className="flex justify-center items-center gap-4 text-xs text-white/50">
+                <span>碳盤查系統</span>
+                <span>•</span>
+                <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent font-semibold">
+                  v0.5.0
+                </span>
+                <span>•</span>
+                <span>圖檔轉PDF前置處理里程碑</span>
+              </div>
             </div>
           </motion.footer>
         </div>
